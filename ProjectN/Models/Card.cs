@@ -4,9 +4,10 @@
     /// 卡片
     /// </summary>
     public class Card
-    {/// <summary>
-     /// 卡片編號
-     /// </summary>
+    {
+        /// <summary>
+        /// 卡片編號
+        /// </summary>
         public int Id { get; set; }
 
         /// <summary>
