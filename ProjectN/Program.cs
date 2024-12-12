@@ -1,13 +1,20 @@
+using FluentValidation;
+using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.OpenApi.Models;
+using ProjectN.Parameter;
 using ProjectN.Repository.Implement;
 using ProjectN.Repository.Interface;
 using ProjectN.Service.Implement;
 using ProjectN.Service.Interface;
+using ProjectN.Validators;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddFluentValidationAutoValidation();
+builder.Services.AddTransient<IValidator<CardParameter>, CardParameterValidator>();
 builder.Services.AddScoped<ICardService, CardService>();
 builder.Services.AddScoped<ICardRepository, CardRepository>(sp => {
     var Configuration = sp.GetRequiredService<IConfiguration>();
