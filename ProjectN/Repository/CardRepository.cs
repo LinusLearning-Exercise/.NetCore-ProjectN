@@ -19,11 +19,11 @@ namespace ProjectN.Repository
         /// 查詢卡片列表
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<Card> GetList()
+        public IEnumerable<CardViewModel> GetList()
         {
             using (var conn = new SqlConnection(_connectString))
             {
-                var result = conn.Query<Card>("SELECT * FROM Card");
+                var result = conn.Query<CardViewModel>("SELECT * FROM Card");
                 return result;
             }
         }
@@ -32,7 +32,7 @@ namespace ProjectN.Repository
         /// 查詢卡片
         /// </summary>
         /// <returns></returns>
-        public Card Get(int id)
+        public CardViewModel Get(int id)
         {
             var sql = @"
                         SELECT * 
@@ -45,7 +45,7 @@ namespace ProjectN.Repository
 
             using (var conn = new SqlConnection(_connectString))
             {
-                var result = conn.QueryFirstOrDefault<Card>(sql, parameters);
+                var result = conn.QueryFirstOrDefault<CardViewModel>(sql, parameters);
                 return result;
             }
         }

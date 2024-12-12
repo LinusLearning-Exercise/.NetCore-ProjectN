@@ -3,7 +3,7 @@
     /// <summary>
     /// 卡片
     /// </summary>
-    public class Card
+    public class CardViewModel
     {
         /// <summary>
         /// 卡片編號
