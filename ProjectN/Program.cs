@@ -1,9 +1,19 @@
 using Microsoft.OpenApi.Models;
+using ProjectN.Repository.Implement;
+using ProjectN.Repository.Interface;
+using ProjectN.Service.Implement;
+using ProjectN.Service.Interface;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddScoped<ICardService, CardService>();
+builder.Services.AddScoped<ICardRepository, CardRepository>(sp => {
+    var Configuration = sp.GetRequiredService<IConfiguration>();
+    var connectString = Configuration.GetValue<string>("ConnectionString");
+    return new CardRepository(connectString);
+});
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
